@@ -1,0 +1,147 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        int arrayLength = 0;
+        int[] arr = new int[arrayLength];
+
+        Console.WriteLine("1 - Show array");
+        Console.WriteLine("2 - Edit array");
+        Console.WriteLine("3 - Add new element");
+        Console.WriteLine("4 - Delete element");
+        Console.WriteLine("0 - Exit");
+
+        string userChoiseString = Console.ReadLine();
+        int userChoise = int.Parse(userChoiseString);
+        while (userChoise < 0 || userChoise > 4)
+        {
+            Console.WriteLine("Incorrect number. Try again.");
+            Console.WriteLine("1 - Show array");
+            Console.WriteLine("2 - Edit array");
+            Console.WriteLine("3 - Add new element");
+            Console.WriteLine("4 - Delete element");
+            Console.WriteLine("0 - Exit");
+            userChoiseString = Console.ReadLine();
+            userChoise = int.Parse(userChoiseString);
+        }
+        while (userChoise > 0 || userChoise < 4)
+        {
+            switch (userChoise)
+            {
+                case 1:
+                    if (arr.Length == 0)
+                    {
+                        Console.WriteLine("Array is empty.");
+                    }
+                    else if (arr.Length > 0)
+                    {
+                        Console.WriteLine("\t\t\tYour array");
+                        for (int i = 0; i < arr.Length; i++)
+                        {
+                            Console.Write($"[{arr[i]}]");
+                            if (i == arr.Length - 1)
+                            {
+                                Console.Write(".");
+                            }
+                            else if (i < arr.Length)
+                            {
+                                Console.Write(", ");
+                            }
+                        }
+                    }
+                    break;
+                case 2:
+                    Console.WriteLine("\t\t\tEditing");
+                    if (arr.Length == 0)
+                    {
+                        Console.WriteLine("Array is empty.");
+                        Console.WriteLine();
+                        break;
+                    }
+                    Console.WriteLine("Enter index: ");
+                    string iNumberString = Console.ReadLine();
+                    int iNumber = int.Parse(iNumberString);
+                    while (iNumber < 0)
+                    {
+                        Console.WriteLine("Index can`t be less as 0. Try again ");
+                        Console.WriteLine("Enter index: ");
+                        iNumberString = Console.ReadLine();
+                        iNumber = int.Parse(iNumberString);
+                    }
+                    while (iNumber > arr.Length)
+                    {
+                        Console.WriteLine("Index can`t be bigger as array length. Try again ");
+                        Console.WriteLine("Enter index: ");
+                        iNumberString = Console.ReadLine();
+                        iNumber = int.Parse(iNumberString);
+                    }
+                    Console.WriteLine($"arr[{iNumber}] = {arr[iNumber]}");
+                    Console.Write("Enter new value: ");
+                    string newValueString = Console.ReadLine();
+                    int newValue = int.Parse(newValueString);
+                    arr[iNumber] = newValue;
+                    Console.WriteLine("Value was changed.");
+                    Console.WriteLine($"arr[{iNumber}] = {arr[iNumber]}");
+                    break;
+                case 3:
+                    int[] newArr = new int[arr.Length + 1];
+                    for (int i = 0; i < arr.Length; i++)
+                    {
+                        newArr[i] = arr[i];
+                    }
+
+                    arrayLength++;
+                    arr = new int[arrayLength];
+
+                    for (int i = 0; i < newArr.Length; i++)
+                    {
+                        arr[i] = newArr[i];
+                    }
+                    Console.WriteLine("New element was added.");
+                    Console.Write("Enter a value for a new element: ");
+                    string newElementString = Console.ReadLine();
+                    int newElement = int.Parse(newElementString);
+                    arr[arr.Length - 1] = newElement;
+                    break;
+                case 4:
+                    if (arr.Length == 0)
+                    {
+                        Console.WriteLine("Array is empty.");
+                        break;
+                    }
+                    Console.Write("Enter index in array what you wanna to delete: ");
+                    string delIndexString = Console.ReadLine();
+                    int delIndex = int.Parse(delIndexString);
+                    arr[delIndex] = 0;
+                    Console.WriteLine("Element was deleted.");
+                    break;
+                case 0:
+                    Console.WriteLine("Bye bye!");
+                    break;
+                default:
+                    Console.WriteLine("Incorrect number. Try again.");
+                    Console.WriteLine();
+                    userChoiseString = Console.ReadLine();
+                    userChoise = int.Parse(userChoiseString);
+                    break;
+            }
+            if (userChoise == 0)
+            {
+                break;
+            }
+            Console.WriteLine();
+            Console.WriteLine("1 - Show array");
+            Console.WriteLine("2 - Edit array");
+            Console.WriteLine("3 - Add new element");
+            Console.WriteLine("4 - Delete element");
+            Console.WriteLine("0 - Exit");
+
+            userChoiseString = Console.ReadLine();
+            userChoise = int.Parse(userChoiseString);
+
+        }
+
+    }
+}
